@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Night Crawler</title>
+  <!--<style>
+    * {
+    	margin: 0;
+    	padding: 0;
+    }
+    #map {
+    	height: 500px;
+    	width: 100%;
+    }
+  </style> -->
+  <link href="userReview.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+  <br></br>
+  <div id="map"></div>
+
+  <script>
+  	function initMap() {
+  		var location = {lat: -37.813, lng: 144.963};
+  		var map = new google.maps.Map(document.getElementById("map"), {
+  			zoom: 10,
+  			center: location
+  		});
+  		var marker = new google.maps.Marker({
+  			position: location,
+  			map: map
+  		});
+  	}
+  </script>
+
+  <!-- AIzaSyCQalMytNHj510qD0EMzqqY_45Y6AHm4is -->
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQalMytNHj510qD0EMzqqY_45Y6AHm4is&callback=initMap"
+  type="text/javascript"></script>
+
+  <div id = "main">
+    <h1>Plan Your Night!</h1>
+      <nav id="nav1">
+          <div id="button1"><a href="searchRoute.html"><button>Search Route</button></a></div>
+          <div id="button2"><a href="searchBusiness.html"><button>Search Bussiness</button></a></div>
+      </nav> 
+
+  <div id="comForm">
+    <form>
+        <p>Search a particular bussiness </p>
+        <input type="text">
+        <input type="submit"><br />
+    </form>
+
+<br />
+
+<div id="business">
+    <h2>Business Name</h2>
+    <h3>Reviews</h3>
+      <p id="review"> Cosy, great atmosphere. Our server was SO knowledgeable and passionate about her work, she took the time to sit with us and explain the differences with Martinis and then suggested the ones that would suit us best. Wish we had longer there, she was fantastic and the whole place was fabulous. <br> random reviewer <br><br> Very good staff serving us for some drinks and the setting is very beautiful.
+We were very happy with the quality of cocktails, and waiting was not a problem. 
+
+There was a momentary lapse in judgement on our part, deciding what to get once we wanted to order, but our server was very lovely, he waited for at least 5 minutes while we were configuring the order, and the whole time he was smiling, nodding, and did not push us once. 
+
+The only downside was slightly uncomfortable chairs for one of our guests, but that was not distracting at all from the great selection of drinks, and the exceptional service. 
+
+Really recommend coming here for a great relaxing night, was better for our younger guests, a few of us older guests felt out of place but that was not the fault of the venue. Great vibes, really amazing night out! <br> random reviewer</p>
+
+      <input id="userReview" type="text">
+      <input type="submit"><br />
+</div>
+
+<img src="Bar.png"> 
+
+  <!-- <div>You searched:</div>
+  <div>Business Name</div>
+  <div>Refine Search</div>
+  <div>Business Name</div>
+  <div>Bisiness Information</div>
+  <div>User Review</div>
+  <div>Business Image</div>
+  <div>average user rating: </div>
+  <div>averageStarRating</div>
+  <div>Rate the Business:</div>
+  <div>userRating</div>
+  <div>< Previous Option</div>
+  <div>Add to Night Plan!</div>
+  <div>Next Option ></div>
+  <div>Search Again</div> -->
+
+</body>
+</html>
