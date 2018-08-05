@@ -9,14 +9,10 @@
 				echo "You are logged in!";
 			}
 			else {
-				echo "<form action=\"includes/login.inc.php\" method=\"POST\">
-									<input type=\"text\" name=\"uid\" placeholder=\"Username/mail\">
-									<input type=\"password\" name=\"pwd\" placeholder=\"password\">
-									<button type=\"submit\" name=\"submit\">Login</button>
-								</form>
-					<!--Trigger/Open The Modal*/-->
-					<link rel=\"stylesheet\" type=\"text/css\" href=\"modal.css\">
-					<button id=\"myBtn\">Sign Up</button>
+				include_once 'signup.php';
+				/*Trigger/Open The Modal*/
+				echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"modal.css\">
+					<button id=\"myBtn\">Open Modal</button>
 
 					<!-- The Modal -->
 					<div id=\"myModal\" class=\"modal\">

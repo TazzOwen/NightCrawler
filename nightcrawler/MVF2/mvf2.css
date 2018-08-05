@@ -1,0 +1,38 @@
+body {
+    background-image: url("background.png");
+    background-size: 100em
+
+
+}
+
+#main {
+    background-color: whitesmoke;
+    background-position: auto;
+    width: 50%;
+    height: 80%;
+    margin: 0 auto;
+    padding: 5em;
+    border-radius: 15px;
+    position: relative;
+
+}
+
+h1 {
+    text-align: center;
+}
+
+#mainForm {
+   text-align: center;
+}
+
+#button1 , #button2 {
+    display:inline-block;
+}
+
+#nav1{
+    text-align: center;
+}
+
+#comForm{
+    text-align: center;
+}
