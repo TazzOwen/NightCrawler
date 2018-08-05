@@ -1,7 +1,7 @@
 <?php
 	include 'header.php';
 ?>
-
+<section class="main-container">
 <h1>Search page</h1>
 
 <div class="business-container">
@@ -35,3 +35,4 @@
 	}
 ?>
 </div>
+</section>

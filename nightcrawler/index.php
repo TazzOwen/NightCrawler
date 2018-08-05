@@ -1,7 +1,7 @@
 <?php
 	include_once 'header.php';
 ?>
-<section class="main-container" onload="scripts/modal.js">
+<section class="main-container">
 	<div class="main-wrapper">
 		<h2>Home</h2>
 		<?php
