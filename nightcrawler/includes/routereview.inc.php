@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
 	session_start();
 
 	$uid = mysqli_real_escape_string($conn, $_SESSION['u_id']);
-	$bid = mysqli_real_escape_string($conn, $_SESSION['checkedin']);
+	$rid = mysqli_real_escape_string($conn, $_SESSION['checkedin']);
 	$rating = mysqli_real_escape_string($conn, $_POST['rating']);
 	$review = mysqli_real_escape_string($conn, $_POST['review']);
 
@@ -18,24 +18,23 @@ if (isset($_POST['submit'])) {
 		header('Location: ' . $_SERVER['HTTP_REFERER']); /*Sends them back to the previous page*/
 		exit();
 	} else {
-		$sql = "SELECT * FROM businessreviews WHERE businessReview_uid = '$uid' AND businessReview_bid = '$bid'";
+		$sql = "SELECT * FROM routereviews WHERE routeReview_uid = '$uid' AND routeReview_rid = '$rid'";
 		$result = mysqli_query($conn, $sql);
 		$queryResult = mysqli_num_rows($result);
 
 		if ($queryResult > 0) {
-			$changeReview = "UPDATE businessreviews SET businessReview_rating = '$rating', businessReview_review = '$review' WHERE businessReview_uid = '$uid' AND businessReview_bid = '$bid'";
+			$changeReview = "UPDATE routereviews SET routeReview_rating = '$rating', routeReview_review = '$review' WHERE routeReview_uid = '$uid' AND routeReview_rid = '$rid'";
 			mysqli_query($conn, $changeReview);
 		} else {
-			$newReview = "INSERT INTO businessreviews (businessReview_uid, businessReview_bid, businessReview_rating, businessReview_review) VALUES ('$uid', '$bid', '$rating', '$review')";
+			$newReview = "INSERT INTO routereviews (routeReview_uid, routeReview_rid, routeReview_rating, routeReview_review) VALUES ('$uid', '$rid', '$rating', '$review')";
 			mysqli_query($conn, $newReview);
 		}
 		
-		$avgSql = "SELECT AVG(businessReview_rating) AS 'average' FROM businessreviews WHERE businessReview_bid = '$bid'";
+		$avgSql = "SELECT AVG(routeReview_rating) AS 'average' FROM routereviews WHERE routeReview_rid = '$rid'";
 		$avgQuery = mysqli_query($conn, $avgSql);
 		while ($row = mysqli_fetch_assoc($avgQuery)) {
 			$avg = $row['average'];
-			$_SESSION['average'] = $avg;
-			$newAvg = "UPDATE businesses SET business_rating = '$avg' WHERE business_id LIKE '$bid' ";
+			$newAvg = "UPDATE routes SET route_rating = '$avg' WHERE route_id LIKE '$rid' ";
 			mysqli_query($conn, $newAvg);
 		};
 

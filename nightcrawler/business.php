@@ -7,9 +7,7 @@
 
 	<div class="main-container">
 		<?php
-			if (isset($_SESSION['average'])) {
-				echo "<h1> average:".$_SESSION['average']."</h1>";
-			}
+		
 			$title = mysqli_real_escape_string($conn, $_GET['name']);
 			$business_id = mysqli_real_escape_string($conn, $_GET['business_id']);
 

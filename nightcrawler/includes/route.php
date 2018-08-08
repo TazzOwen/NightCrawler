@@ -2,35 +2,35 @@
 	include_once 'header.php';
 ?>
 
-<section class="business-container">
-	<h1>Business Page</h1>
+<section class="route-container">
+	<h1>Route Page</h1>
 
 	<div class="main-container">
 		<?php
-			if (isset($_SESSION['average'])) {
-				echo "<h1> average:".$_SESSION['average']."</h1>";
-			}
-			$title = mysqli_real_escape_string($conn, $_GET['name']);
-			$business_id = mysqli_real_escape_string($conn, $_GET['business_id']);
+			$route_id = mysqli_real_escape_string($conn, $_GET['route_id']);
 
-			$sql_business = "SELECT * FROM businesses WHERE business_id='$business_id'";
-			$result_business = mysqli_query($conn, $sql_business);
+			$sql_route = "SELECT * FROM `routes` INNER JOIN users ON routes.route_uid=users.user_id AND routes.route_id='$route_id'";
+			$result_route = mysqli_query($conn, $sql_route);
 
-			$businessQueryResults = mysqli_num_rows($result_business);
+			$routeQueryResults = mysqli_num_rows($result_route);
 
-			//businesses
-			//business_id business_name business_description business_address business_type business_latitude business_longitude business_rating
-
+			//route_id route_uid route_name route_description route_stops route_type route_rating
+			// follow user - following user
+			// "UPDATE users SET
 			// Check the query has any results first
-			if ($businessQueryResults > 0) {
-				while ($row = mysqli_fetch_assoc($result_business)) {
+			if ($routeQueryResults > 0) {
+
+				// get user name
+
+				while ($row = mysqli_fetch_assoc($result_route)) {
 					echo "
-					<div class='business-box'>
-						<h2>".$row['business_name']."</h2>
-						<h2>".$row['business_description']."</h2>
-						<p>".$row['business_address']."</p>
-						<p>".$row['business_type']."</p>
-						<p>Rating ".$row['business_rating']."</p>
+					<div class='route-box'>
+						<h2>".$row['route_name']."</h2>
+						<h2>".$row['user_uid']."</h2>
+						<h2>".$row['route_description']."</h2>
+						<p>".$row['route_address']."</p>
+						<p>".$row['route_type']."</p>
+						<p>Rating ".$row['route_rating']."</p>
 					</div>";
 				}
 			}
@@ -60,8 +60,9 @@
 			} else {
 				echo "There are no reviews of this business right now!";
 			}
-			if (isset($_SESSION['checkedin'])) {
-				if ($_SESSION['checkedin'] == $business_id) {
+			if (isset($_SESSION['route_checkin'])) {
+				//Already travelling route
+				if ($_SESSION['route_checkin'] == $business_id) {
 					echo "you are checked in";
 					echo "<form action=\"includes/businessreview.inc.php\" method=\"POST\">
 					Rating:
@@ -72,9 +73,10 @@
            				placeholder=\"Write a short review of this business if you want\"></input>
            			<input type=\"submit\" name=\"submit\" value=\"Submit\">
            			</form>";
-           			echo $_SESSION['checkedin'];
+           			echo $_SESSION['route_checkin'];
 
 				} else {
+					//Already on another route
 					echo "You are checked into another business. Would you like to check into this one instead? 
 					<form action=\"includes/checkin.inc.php\" method=\"GET\">
 					<input type=\"hidden\" name=\"name\" value=\"".$title."\">
@@ -83,6 +85,7 @@
 					</form>";
 				}
 			} else {
+				//Begin a route
 				echo "You are not checked into another business. Would you like to check into this one instead?
 					<form action=\"includes/checkin.inc.php\" method=\"GET\">
 					<input type=\"hidden\" name=\"name\" value=\"".$title."\">
@@ -90,8 +93,6 @@
 					<input type=\"submit\" name=\"submit\" value=\"Check in\">
 					</form>";
 			}
-			echo $_SESSION['checkedin'];
-			echo $_SESSION['u_id'];
 		?>
 	</div>
 </div>
