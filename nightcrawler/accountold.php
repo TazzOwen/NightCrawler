@@ -47,11 +47,21 @@
 		-------
 		<div/>
 		*/
-		echo "	<div class=\"card\">
+		echo "	<div>
+					<h2>".$row['user_id']."</h2>
+					<h2>".$row['user_first']."</h2>
+					<h2>".$row['user_last']."</h2>
+					<p>".$row['user_email']."</p>
+					<p>".$row['user_uid']."</p>
+					<p>".$row['user_pwd']."</p>
+				</div>
+
+
+				<div>
 					<h3>Welcome back, ".$row['user_first']." ".$row['user_last']."!</h3>
 				</div>
 
-				<div class=\"card\">
+				<div>
 					<h3>Your reviews:</h3>";
 
 					$reviewSql = "SELECT * FROM routereviews INNER JOIN routes WHERE routereviews.routeReview_uid='".$row['user_id']."' AND routes.route_uid='".$row['user_id']."'";
@@ -60,21 +70,20 @@
 					$reviewQueryResult = mysqli_num_rows($reviewResult);
 
 					if ($reviewQueryResult > 0) {
-						echo "<div>";									
+											
 						while ($reviewRow = mysqli_fetch_assoc($reviewResult)) {
-							echo "<div>".$reviewRow['route_name']."</div>";
+							echo $reviewRow['route_name'];
 						}
-						echo "</div>";
 					}
 					else {
-						echo "<div>You haven't reviewed any routes!</div>";
+						echo "<p>You haven't reviewed any routes!";
 					}
 				echo "</div>
 
-				<div class=\"card\">
+				<div>
 					<h3>Users following:</h3>";
 					if (empty($row['user_following'])) {
-						echo "<div>You aren't following anybody</div>";
+						echo "<p>You aren't following anybody</p>";
 					}
 					else {
 						$followingarray = explode(",",$row['user_following']);
@@ -89,7 +98,7 @@
 					}
 				echo "</div>
 
-				<div class=\"card\">
+				<div>
 					<h3>Businesses following:</h3>";
 					if (empty($row['user_businessfollow'])) {
 						echo "<p>You aren't following any businesses</p>";
@@ -101,16 +110,16 @@
 
 							$businessresult = mysqli_query($conn, $sqlbusiness);
 							while ($businessrow = mysqli_fetch_assoc($businessresult)) {
-								echo "<div>".$businessrow['business_name']."</div>";
+								echo "<p>".$businessrow['business_name']."</p>";
 							}
 						}
 					}
 				echo "</div>
 
-				<div class=\"card\">
+				<div>
 					<h3>Your followers:</h3>";
 					if (empty($row['user_followers'])) {
-						echo "<div>You have no followers</div>";
+						echo "<p>You have no followers</p>";
 					}
 					else {
 						$followerarray = explode(",",$row['user_followers']);
@@ -119,12 +128,15 @@
 
 							$result = mysqli_query($conn, $sqlfollower);
 							while ($followrow = mysqli_fetch_assoc($result)) {
-								echo "<div>".$followrow['user_uid']."</div>";
+								echo "<p>".$followrow['user_uid']."</p>";
 							}
 						}
 					}
 				
-				echo "</div>";
+				echo "<p>
+				</div>
+
+				";
 	}
 
 	include_once 'footer.php';

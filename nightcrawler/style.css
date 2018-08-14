@@ -68,6 +68,14 @@ body {
 
 
 /* Create two unequal columns that floats next to each other */
+/* Center box for index page*/
+.centercolumn {
+    display: inline-block;
+    width: 25%;
+    background-color: #f1f1f1;
+    padding-left: 20px;
+}
+
 /* Left column */
 .leftcolumn {   
     float: left;

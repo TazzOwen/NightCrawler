@@ -8,6 +8,7 @@
 	<div class="main-container">
 		<?php
 		
+			// Gets the business name and id from the url for easy access
 			$title = mysqli_real_escape_string($conn, $_GET['name']);
 			$business_id = mysqli_real_escape_string($conn, $_GET['business_id']);
 
