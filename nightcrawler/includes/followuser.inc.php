@@ -14,15 +14,9 @@ $userresult = mysqli_query($conn, $usersql);
 $resultrow = mysqli_fetch_assoc($userresult);
 
 // Checks if anything is in the following array. Stops the implode functon adding a "," at the start
-$newuserarray = $resultrow['user_following'];
+$userarray = $resultrow['user_following'] . "," . $reviewid;
 
-if (strlen($resultrow['user_following']) > 1) {
-	$olduserarray = explode(",", $resultrow['user_following']);
-	array_push($olduserarray, $reviewid);
-	$newuserarray = implode(",", $olduserarray);
-} 
-
-$newusersql = "UPDATE users SET user_following='$newuserarray' WHERE user_id='$userid'";
+$newusersql = "UPDATE users SET user_following='$userarray' WHERE user_id='$userid'";
 mysqli_query($conn, $newusersql);
 
 //Add the user to the reviewer's list of followers
@@ -31,20 +25,9 @@ $reviewresult = mysqli_query($conn, $reviewsql);
 
 $resultrow = mysqli_fetch_assoc($reviewresult);
 
-$newreviewarray = $resultrow['user_followers'];
+$reviewarray = $resultrow['user_followers'] . "," . $userid;
 
-if (strlen($resultrow['user_following']) > 1) {
-	$oldreviewarray = explode(",", $resultrow['user_followers']);
-	array_push($oldreviewarray, $userid);
-	$newreviewarray = implode(",", $oldreviewarray);
-} 
-
-$oldreviewarray = explode(",", $resultrow['user_followers']);
-array_push($oldreviewarray, $reviewid);
-
-$newreviewarray = implode(",", $oldreviewarray);
-
-$newreviewsql = "UPDATE users SET user_followers='$newreviewarray' WHERE user_id='$reviewid'";
+$newreviewsql = "UPDATE users SET user_followers='$reviewarray' WHERE user_id='$reviewid'";
 mysqli_query($conn, $newreviewsql);
 
 header("Location: ../route.php?route_id=".$_POST['route_id']."&success=".$newreviewarray);

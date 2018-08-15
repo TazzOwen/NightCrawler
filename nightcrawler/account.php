@@ -39,15 +39,8 @@
 		| Rating
 		-------
 		<div/>
-		<div>
-		<h3>Your followers:</h3>
-		-------
-		| Number:
-		| Username list
-		-------
-		<div/>
 		*/
-		echo "	<div class=\"card\">
+		echo "<div class=\"card\">
 					<h3>Welcome back, ".$row['user_first']." ".$row['user_last']."!</h3>
 				</div>
 
@@ -62,7 +55,7 @@
 					if ($reviewQueryResult > 0) {
 						echo "<div>";									
 						while ($reviewRow = mysqli_fetch_assoc($reviewResult)) {
-							echo "<div>".$reviewRow['route_name']."</div>";
+							echo "<p><a href='route.php?route_id=".$reviewRow['routeReview_rid']."'>".$reviewRow['route_name']."</a></p>";
 						}
 						echo "</div>";
 					}
@@ -70,7 +63,6 @@
 						echo "<div>You haven't reviewed any routes!</div>";
 					}
 				echo "</div>
-
 				<div class=\"card\">
 					<h3>Users following:</h3>";
 					if (empty($row['user_following'])) {
@@ -101,7 +93,10 @@
 
 							$businessresult = mysqli_query($conn, $sqlbusiness);
 							while ($businessrow = mysqli_fetch_assoc($businessresult)) {
-								echo "<div>".$businessrow['business_name']."</div>";
+								echo "<h3><a href='business.php?name=".$businessrow['business_name']."&business_id=".$businessrow['business_id']."'>".$businessrow['business_name']."</a></h3>
+									<p>".$businessrow['business_type']."</p>
+									<p>".$businessrow['business_address']."</p>
+									<p>".$businessrow['business_rating']."</p>";
 							}
 						}
 					}
@@ -114,6 +109,7 @@
 					}
 					else {
 						$followerarray = explode(",",$row['user_followers']);
+						echo "<p>You have <b>". sizeof($followerarray) . "</b> followers</p>";
 						foreach ($followerarray as $follower) {
 							$sqlfollower = "SELECT * FROM users WHERE user_id='$follower'";
 

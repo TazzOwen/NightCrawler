@@ -7,7 +7,7 @@
 
 	<div class="main-container">
 		<?php
-		
+			// TITLE //
 			// Gets the business name and id from the url for easy access
 			$title = mysqli_real_escape_string($conn, $_GET['name']);
 			$business_id = mysqli_real_escape_string($conn, $_GET['business_id']);
@@ -30,7 +30,19 @@
 						<p>".$row['business_address']."</p>
 						<p>".$row['business_type']."</p>
 						<p>Rating ".$row['business_rating']."</p>
+						<p>followers ".$row['business_followers']."</p>
 					</div>";
+					$followcheck = explode(",",$row['business_followers']);
+					if (in_array($_SESSION['u_id'], $followcheck)) {
+						echo "<button type=\"button\" disabled>You follow this business already</button>";
+					}
+					else {
+						echo "<form action=\"includes/followbusiness.inc.php\" method=\"POST\">
+						<input type=\"hidden\" name=\"business_id\" value=\"".$business_id."\">
+						<input type=\"hidden\" name=\"business_name\" value=\"".$title."\"> 
+						<button type=\"submit\" name=\"submit\">Follow this business</button>
+						</form>";
+					}
 				}
 			}
 			echo "</div>
@@ -89,8 +101,6 @@
 					<input type=\"submit\" name=\"submit\" value=\"Check in\">
 					</form>";
 			}
-			echo $_SESSION['checkedin'];
-			echo $_SESSION['u_id'];
 		?>
 	</div>
 </div>
