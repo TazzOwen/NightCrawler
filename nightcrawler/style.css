@@ -6,16 +6,17 @@ body {
     font-family: Arial;
     padding: 10px;
     background: #f1f1f1;
+    background-image: url('images/background.png');
 }
 
 /* Header/Blog Title */
 .header {
     padding: 30px;
     text-align: center;
-    background: white;
 }
 
 .header h1 {
+    color: white;
     font-size: 50px;
 }
 

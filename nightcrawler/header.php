@@ -13,7 +13,7 @@
 <body>
 <div class="header">
   <h1>Nightcrawler</h1>
-  <p>Resize the browser window to see the effect.</p>
+  <p></p>
 </div>
 
 <div class="nav-bar">
