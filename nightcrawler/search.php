@@ -2,6 +2,7 @@
 	include 'header.php';
 ?>
 <section class="main-container">
+<div class="card">
 <h1>Search page</h1>
 
 <div class="business-container">
@@ -56,5 +57,6 @@
 		}
 	}
 ?>
+</div>
 </div>
 </section>

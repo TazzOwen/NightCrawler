@@ -3,9 +3,9 @@
 ?>
 
 <section class="business-container">
-	<h1>Business Page</h1>
-
+	<div class="card">
 	<div class="main-container">
+		
 		<?php
 			// TITLE //
 			// Gets the business name and id from the url for easy access
@@ -25,12 +25,11 @@
 				while ($row = mysqli_fetch_assoc($result_business)) {
 					echo "
 					<div class='business-box'>
-						<h2>".$row['business_name']."</h2>
+						<h1>".$row['business_name']."</h1>
 						<h2>".$row['business_description']."</h2>
 						<p>".$row['business_address']."</p>
 						<p>".$row['business_type']."</p>
 						<p>Rating ".$row['business_rating']."</p>
-						<p>followers ".$row['business_followers']."</p>
 					</div>";
 					$followcheck = explode(",",$row['business_followers']);
 					if (in_array($_SESSION['u_id'], $followcheck)) {
@@ -73,7 +72,7 @@
 			}
 			if (isset($_SESSION['checkedin'])) {
 				if ($_SESSION['checkedin'] == $business_id) {
-					echo "you are checked in";
+					echo "<b>You are checked in. Tell others what you think of this business!</b>";
 					echo "<form action=\"includes/businessreview.inc.php\" method=\"POST\">
 					Rating:
 					<input type=\"number\" id=\"rating\" name=\"rating\"
@@ -83,10 +82,9 @@
            				placeholder=\"Write a short review of this business if you want\"></input>
            			<input type=\"submit\" name=\"submit\" value=\"Submit\">
            			</form>";
-           			echo $_SESSION['checkedin'];
 
 				} else {
-					echo "You are checked into another business. Would you like to check into this one instead? 
+					echo "<b>You are checked into another business. Would you like to check into this one instead? </b>
 					<form action=\"includes/checkin.inc.php\" method=\"GET\">
 					<input type=\"hidden\" name=\"name\" value=\"".$title."\">
 					<input type=\"hidden\" name=\"business_id\" value=\"".$business_id."\"> 
@@ -94,7 +92,7 @@
 					</form>";
 				}
 			} else {
-				echo "You are not checked into another business. Would you like to check into this one instead?
+				echo "<b>You are not checked into another business. Would you like to check into this one instead? </b>
 					<form action=\"includes/checkin.inc.php\" method=\"GET\">
 					<input type=\"hidden\" name=\"name\" value=\"".$title."\">
 					<input type=\"hidden\" name=\"business_id\" value=\"".$business_id."\"> 
@@ -102,6 +100,7 @@
 					</form>";
 			}
 		?>
+	</div>
 	</div>
 </div>
 </section>

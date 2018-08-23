@@ -3,7 +3,6 @@
 ?>
 <section class="main-container">
 	<div class="centercolumn">
-		<div class="card">
 		<?php
 			if (isset($_SESSION['u_uid'])) {
 				include 'account.php';
@@ -31,7 +30,6 @@
 				</div>";
 			}
 		?>
-	</div>
 	</div>
 	
 </section>
