@@ -8,6 +8,7 @@
 				include 'account.php';
 			}
 			else {
+				/* This modal section was based on the example found at https://www.w3schools.com/howto/howto_css_modals.asp */
 				echo "<form action=\"includes/login.inc.php\" method=\"POST\">
 									<input type=\"text\" name=\"uid\" placeholder=\"Username/mail\">
 									<input type=\"password\" name=\"pwd\" placeholder=\"password\">
@@ -33,7 +34,7 @@
 	</div>
 	
 </section>
-
+<!-- This script didn't seem to work anywhere else it was placed, but it is also derived from the modal tutorial above -->
 <script>
 // Get the modal
 var modal = document.getElementById('myModal');

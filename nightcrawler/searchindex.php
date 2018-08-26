@@ -1,6 +1,10 @@
 <?php
 	include_once 'header.php';
 ?>
+
+<!-- Just a basic search page for now. The map feature has not been integrated into the search, but when it does,
+this will be the place to ask for a geolocation from the user-->
+
 <div class="main-container">
 <div class="centercolumn">
 <form action="search.php" method="POST">

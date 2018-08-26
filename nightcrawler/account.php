@@ -10,36 +10,7 @@
 	$queryResult = mysqli_num_rows($result);
 
 	while ($row = mysqli_fetch_assoc($result)) {
-		// user_id user_first user_last user_email user_uid user_pwd
-		/*
-		Page setup:
-		<div>
-		Welcome back [firstname] [lastname]!
-		<div/>
-		<div>
-		<h3>Your reviews:</h3>
-		-------
-		| Business/Route Name - Links to the business or route page
-		| Your rating
-		-------
-		<div/>
-		<div>
-		<h3>Users following:</h3>
-		-------
-		| Username - 
-		| Routes -
-		| Reviews - 
-		-------
-		<div/>
-		<div>
-		<h3>Businesses following:</h3>
-		-------
-		| Business Name
-		| Address
-		| Rating
-		-------
-		<div/>
-		*/
+		// From the database: user_id user_first user_last user_email user_uid user_pwd
 		echo "<div class=\"card\">
 					<h3>Welcome back, ".$row['user_first']." ".$row['user_last']."!</h3>
 				</div>
@@ -126,7 +97,7 @@
 	include_once 'footer.php';
 ?>
 
-<!--
+<!-- DESIGN OVERVIEW
 		Welcome back, $user_first $user_last
 
 		Your reviews:

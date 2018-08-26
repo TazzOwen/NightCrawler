@@ -1,7 +1,7 @@
 <?php
 	include_once 'header.php';
 ?>
-
+<!-- asic signup page. Links to the database using a file in the includes file-->
 <section class="main-container">
 	<div class="main-wrapper">
 		<h2>Signup</h2>

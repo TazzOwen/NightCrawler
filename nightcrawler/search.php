@@ -7,11 +7,11 @@
 
 <div class="business-container">
 <?php
-	//businesses
-		//business_id business_name business_description business_address business_type business_latitude business_longitude business_rating
+	// Business search results
 	if (isset($_POST['submit-search'])) {
 		$search = mysqli_real_escape_string($conn, $_POST['search']);
 		if ($_POST['searchtype'] == 'business') {
+			// Currently searches every column. Heuristics can be added later
 			$sql = "SELECT * FROM businesses WHERE business_name LIKE '%$search%' OR business_description LIKE '%$search%' OR business_address LIKE '%$search%' OR business_type LIKE '%$search%'";
 			$result = mysqli_query($conn, $sql);
 			$queryResult = mysqli_num_rows($result);
@@ -20,6 +20,7 @@
 
 			if ($queryResult > 0) {
 				while ($row = mysqli_fetch_assoc($result)) {
+					// Lists the business details here. Clicking on any part of it will direct the user to the business page
 					echo "<div class='card'>
 					<a href='business.php?name=".$row['business_name']."&business_id=".$row['business_id']."'>
 						<h2>".$row['business_name']."</h2></a>
@@ -34,6 +35,7 @@
 			}
 		}
 		if ($_POST['searchtype'] == 'routes') {
+			// Currently searches every column. Heuristics can be added later
 			$sql = "SELECT * FROM routes WHERE route_name LIKE '%$search%' OR route_description LIKE '%$search%' OR route_stops LIKE '%$search%' OR route_type LIKE '%$search%'";
 			$result = mysqli_query($conn, $sql);
 			$queryResult = mysqli_num_rows($result);
@@ -42,6 +44,7 @@
 
 			if ($queryResult > 0) {
 				while ($row = mysqli_fetch_assoc($result)) {
+					// Lists the business details here. Clicking on any part of it will direct the user to the route page
 					echo "<div class='card'>
 					<a href='route.php?route_id=".$row['route_id']."'>
 						<h2>".$row['route_name']."</h2></a>

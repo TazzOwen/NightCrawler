@@ -17,7 +17,7 @@
 
 			$businessQueryResults = mysqli_num_rows($result_business);
 
-			//businesses
+			//From the database - businesses
 			//business_id business_name business_description business_address business_type business_latitude business_longitude business_rating
 
 			// Check the query has any results first
@@ -47,7 +47,7 @@
 			echo "</div>
 				<div>";
 
-
+			// Lists all the reviews for the business.
 			$sql_businessreviews = "SELECT * FROM businessreviews WHERE businessReview_bid='$business_id'";
 			$result_reviews = mysqli_query($conn, $sql_businessreviews);
 
@@ -70,6 +70,7 @@
 			} else {
 				echo "There are no reviews of this business right now!";
 			}
+			// To write a review the user has to check in first.
 			if (isset($_SESSION['checkedin'])) {
 				if ($_SESSION['checkedin'] == $business_id) {
 					echo "<b>You are checked in. Tell others what you think of this business!</b>";
